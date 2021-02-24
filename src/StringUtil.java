@@ -8,11 +8,13 @@ public class StringUtil
 	// Ejemplo: replicate('x',5) ==> 'xxxxx'
 	public static String replicate(char c, int n)
 	{
-		String cadena = "";
+		String str = "";
+
 		for (int i = 0; i < n; i++) {
-			cadena = cadena + c;
+			str = str + c;
 		}
-		return cadena;
+
+		return str;
 	}
 
 	// Retorna una cadena de longitud n, compuesta por s
@@ -21,11 +23,11 @@ public class StringUtil
 	// Ejemplo lpad("5",3,'0') ==> "005"
 	public static String lpad(String s, int n, char c)
 	{
-		int longitud = s.length();
+		int length = s.length();
 
-		if(longitud < n) {
-			int diferencia = n - longitud;
-			s = replicate(c, diferencia) + s;
+		if(length < n) {
+			int difference = n - length;
+			s = replicate(c, difference) + s;
 		}
 
 		return s;
@@ -35,12 +37,13 @@ public class StringUtil
 	// representados como cadenas de caracteres
 	public static String[] toStringArray(int arr[])
 	{
-		int longitud = arr.length;
-		String stringArray[] = new String[longitud];
+		int length = arr.length;
+		String stringArray[] = new String[length];
 
-		for (int i = 0; i < longitud; i++) {
+		for (int i = 0; i < length; i++) {
 			stringArray[i] = String.valueOf(arr[i]);
 		}
+
 		return stringArray;
 	}
 
@@ -48,12 +51,13 @@ public class StringUtil
 	// representados como enteros
 	public static int[] toIntArray(String arr[])
 	{
-		int longitud = arr.length;
-		int intArray[] = new int[longitud];
+		int length = arr.length;
+		int intArray[] = new int[length];
 
-		for (int i = 0; i < longitud; i++) {
+		for (int i = 0; i < length; i++) {
 			intArray[i] = Integer.valueOf(arr[i]);
 		}
+
 		return intArray;
 	}
 
@@ -62,19 +66,19 @@ public class StringUtil
 	public static int maxLength(String arr[])
 	{
 		List<String> strings = Arrays.asList(arr);
+		String maxLength = strings.stream().max(Comparator.comparingInt(String::length)).get();
 
-		String mayorLongitud = strings.stream().max(Comparator.comparingInt(String::length)).get();
-		return mayorLongitud.length();
+		return maxLength.length();
 	}
 
 	// Completa los elemento del arr agregando caracteres c
 	// a la izquierda, dejando a todos con la longitud del mayor
 	public static void lNormalize(String arr[], char c)
 	{
-		int maxLongitud = maxLength(arr);
+		int maxLength = maxLength(arr);
 
 		for (int i = 0; i < arr.length; i++) {
-			arr[i] = lpad(arr[i], maxLongitud, c);
+			arr[i] = lpad(arr[i], maxLength, c);
 		}
 	}
 }

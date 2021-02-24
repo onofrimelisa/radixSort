@@ -19,6 +19,7 @@ public class RadixSortEjerc
 		}
 		
 		// recorremos el arreglo para ir llenando las listas
+		// (se repite N veces, siendo N la cantidad de digitos del string mas largo presente en el arreglo)
 		int maxLength = StringUtil.maxLength(stringArray);
 		int index;
 
@@ -29,10 +30,10 @@ public class RadixSortEjerc
 				motherList.get(Character.getNumericValue(digit)).add(str);
 			}
 			
-			// borramos
+			// borramos el arreglo anterior
 			stringArray = new String[stringArray.length];
 			
-			// cargamos ordenado
+			// cargamos el arreglo teniendo en cuenta el orden
 			index = 0;
 
 			for (List<String> list: motherList) {
@@ -54,11 +55,13 @@ public class RadixSortEjerc
 	public static void main(String[] args)
 	{
 		int arr[]={16223,898,13,906,235,23,9,1532,6388,2511,8};
+		System.out.println("Ordenamos usando el algoritmo radixSort el arreglo: ");
+		System.out.println(Arrays.toString(arr));
+		System.out.println("");
+
 		radixSort(arr);
 
-		for(int i=0; i<arr.length;i++)
-		{
-			System.out.print(arr[i]+(i<arr.length-1?",":""));
-		}
+		System.out.println("¡Arreglo ordenado! Resultado: ");
+		System.out.println(Arrays.toString(arr));
 	}
 }
